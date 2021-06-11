@@ -1,0 +1,75 @@
+<h3>Clientes</h3>
+
+
+<div class="container p-5" *ngIf="visibilidadeTabela">
+  <div class="border border-light rounded p-5" >
+    <div>
+    <button type="button" class="btn btn-sm btn-secondary" (click)="ExibirFormularioCadastro()">
+      Novo Cliente
+    </button>
+  </div>
+  <hr>
+
+  <table class="table table-striped table-hover table-sm" *ngIf="clientes">
+    <tr class="thead-light">
+      <th>Nome</th>
+      <th>E-mail</th>
+      <th>Aldeia</th>
+      <th>Opções</th>
+
+    </tr>
+
+    <tr *ngFor="let cliente of clientes">
+      <td>{{cliente.nome}}</td>
+      <td>{{cliente.email}}</td>
+      <td>{{cliente.aldeia}}</td>
+
+      <td>
+        <button type="button" class="btn btn-sm btn-outline-info" (click)="ExibirFormularioAtualizacao(cliente.clienteId)">Atualizar</button> |
+        <button type="button" class="btn btn-sm btn-outline-danger" (click)="Excluir(cliente.clienteId)">Excluir</button>
+      </td>
+    </tr>
+  </table>
+  </div>
+</div>
+
+
+<div class="container p-5" *ngIf="visibilidadeFormulario">
+  <div class="row">
+    <div class="col-6 bourd bourd-light rounded p-5 shadow" *ngIf="formulario">
+      <h6>{{tituloFormulario}}</h6>
+      <hr>
+      <form [formGroup]="formulario" (ngSubmit)="EnviarFormulario()">
+
+        <div class="formGroup">
+          <label>Nome:</label>
+          <input type="text" class="form-control form-control-sm" formControlName="nome">
+        </div>
+
+        <div class="formGroup">
+          <label>E-mail:</label>
+          <input type="text" class="form-control form-control-sm" formControlName="email">
+        </div>
+
+        <div class="formGroup">
+          <label>Aldeia:</label>
+          <input type="text" class="form-control form-control-sm" formControlName="aldeia">
+        </div>
+        <br>
+
+        <div class="container">
+          <div class="row">
+            <div>
+              <button type="submit" class="btn btn-sm btn-outline-secondary">Enviar</button>
+            </div>
+
+            <div class="pl-1">
+              <button type=button class="btn btn-sm btn-light" (click)="Voltar()">Voltar</button>
+            </div>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
